@@ -1,14 +1,3 @@
 <template>
-  <div>
-    <nav-bar />
-  </div>
+  <div class="container">コンテンツが入るよ</div>
 </template>
-
-<script>
-import NavBar from '~/components/Modules/NavBar'
-export default {
-  components: {
-    NavBar,
-  },
-}
-</script>
