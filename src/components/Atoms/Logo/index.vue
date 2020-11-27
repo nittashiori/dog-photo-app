@@ -40,20 +40,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .logo {
   color: #000;
-}
-.logo svg {
-  fill: currentColor;
-}
-.logo--default {
-  color: #000;
-}
-.logo--white {
-  color: #fff;
-}
-.logo--primary {
-  color: red;
+  &--default {
+    color: #000;
+  }
+  &--white {
+    color: #fff;
+  }
+  &--primary {
+    color: red;
+  }
+  svg {
+    fill: currentColor;
+  }
 }
 </style>
