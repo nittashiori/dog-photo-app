@@ -1,21 +1,31 @@
 export const state = () => ({
-  doglist: [],
+  dogNameList: [],
+  dogImageList: [],
 })
 
 export const getters = {
-  doglist(state) {
-    return state.doglist
+  dogNameList(state) {
+    return state.dogNameList
+  },
+  dogImageList(state) {
+    return state.dogImageList
   },
 }
 
 export const mutations = {
-  setDogs(state, dogsname) {
-    state.doglist = dogsname
+  setDogs(state, dogname) {
+    state.dogNameList = dogname
+  },
+  setImages(state, dogimage) {
+    state.dogImageList = dogimage
   },
 }
 
 export const actions = {
-  setDogs({ commit }, dogsname) {
-    commit('setDogs', dogsname)
+  setDogs({ commit }, dogname) {
+    commit('setDogs', dogname)
+  },
+  setImages({ commit }, dogimage) {
+    commit('setImages', dogimage)
   },
 }
