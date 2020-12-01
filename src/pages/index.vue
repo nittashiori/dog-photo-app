@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div>コンテンツが入るよ</div>
-    <div>{{ dogs }}</div>
     <div class="columns is-multiline">
       <div v-for="(item, i) in doglist" :key="i" class="column is-2">
         <a class="button">{{ i }}</a>
@@ -11,17 +10,17 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { mapGetters } from 'vuex'
+import { fetchDogName } from '~/api/fetchDogName'
 
 export default {
   async asyncData({ store }) {
-    const response = await axios.get('https://dog.ceo/api/breeds/list/all')
-    const dogs = response.data.message
+    const response = await fetchDogName
+    const dogsname = response
 
-    await store.dispatch('register/setDogs', dogs)
+    await store.dispatch('register/setDogs', dogsname)
 
-    return { dogs }
+    return { dogsname }
   },
   computed: {
     ...mapGetters('register', ['doglist']),
