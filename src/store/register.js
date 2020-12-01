@@ -9,13 +9,13 @@ export const getters = {
 }
 
 export const mutations = {
-  setDogs(state, dogs) {
-    state.doglist = dogs
+  setDogs(state, dogsname) {
+    state.doglist = dogsname
   },
 }
 
 export const actions = {
-  setDogs({ commit }, dogs) {
-    commit('setDogs', dogs)
+  setDogs({ commit }, dogsname) {
+    commit('setDogs', dogsname)
   },
 }
