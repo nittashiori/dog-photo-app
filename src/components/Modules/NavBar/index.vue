@@ -2,7 +2,9 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
-        <nuxt-link to="/breeds" class="navbar-item">わんこ</nuxt-link>
+        <nuxt-link to="/breeds" class="navbar-item title is-5">
+          わんこ
+        </nuxt-link>
         <span class="navbar-burger burger" data-taeget="navbarMenu">
           <span></span>
           <span></span>
