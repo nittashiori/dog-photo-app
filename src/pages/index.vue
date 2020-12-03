@@ -2,10 +2,9 @@
   <div class="container">
     <div class="columns is-multiline">
       <div v-for="(item, i) in dogNameList" :key="i" class="column is-2">
-        <!-- <a class="button">{{ i }}</a> -->
-        <nuxt-link :to="{ path: 'dogs/' + i }" class="button">
+        <button class="button" @click="submit(i)">
           {{ i }}
-        </nuxt-link>
+        </button>
       </div>
     </div>
   </div>
@@ -26,6 +25,12 @@ export default {
   },
   computed: {
     ...mapGetters('register', ['dogNameList']),
+  },
+  methods: {
+    submit(i) {
+      this.$router.push('/dogs/' + i)
+      this.$store.dispatch('register/setDogTitle', i)
+    },
   },
 }
 </script>

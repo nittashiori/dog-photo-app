@@ -2,6 +2,7 @@ export const state = () => ({
   dogNameList: [],
   dogImageList: [],
   pageCount: 1,
+  dogTitle: '',
 })
 
 export const getters = {
@@ -13,6 +14,9 @@ export const getters = {
   },
   pageCount(state) {
     return state.pageCount
+  },
+  dogTitle(state) {
+    return state.dogTitle
   },
 }
 
@@ -26,6 +30,9 @@ export const mutations = {
   setPageCount(state, pagecount) {
     state.pageCount = pagecount
   },
+  setDogTitle(state, dogtitle) {
+    state.dogTitle = dogtitle
+  },
 }
 
 export const actions = {
@@ -37,5 +44,8 @@ export const actions = {
   },
   setPageCount({ commit }, pagecount) {
     commit('setPageCount', pagecount)
+  },
+  setDogTitle({ commit }, dogtitle) {
+    commit('setDogTitle', dogtitle)
   },
 }
