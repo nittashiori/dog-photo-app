@@ -1,7 +1,7 @@
 <template>
   <div class="container">
+    <h2 class="title is-2">{{ dogTitle }}</h2>
     <div class="columns is-multiline">
-      <h2></h2>
       <div v-for="(item, i) in dogImageList" :key="i" class="column is-3">
         <img :src="item.url" />
         <span v-if="i < 3" class="tag is-danger">NEW</span>
@@ -58,6 +58,7 @@ export default {
   computed: {
     ...mapGetters('register', ['dogImageList']),
     ...mapGetters('register', ['pageCount']),
+    ...mapGetters('register', ['dogTitle']),
   },
 }
 </script>
