@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns is-multiline">
       <h2></h2>
-      <div v-for="(item, i) in dogimage" :key="i" class="column is-3">
+      <div v-for="(item, i) in dogImageList" :key="i" class="column is-3">
         <img :src="item.url" />
         <span v-if="i < 3" class="tag is-danger">NEW</span>
         <a class="button is-warning is-small" @click="item.like += 1">
@@ -10,6 +10,20 @@
         </a>
       </div>
     </div>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+      <ul class="pagination-list">
+        <li v-for="count in pageCount" :key="count">
+          <nuxt-link
+            class="pagination-link"
+            :class="{ 'is-current': current == count }"
+            :to="{ path: '?page=' + count }"
+            append
+          >
+            {{ count }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -18,15 +32,32 @@ import { mapGetters } from 'vuex'
 import { fetchDogImage } from '~/api/fetchDogImage'
 
 export default {
-  async asyncData({ store, params }) {
+  watchQuery: ['page'],
+  validate({ params }) {
+    return /^[a-z]+$/.test(params.breed)
+  },
+  async asyncData({ store, params, query }) {
     const dogimage = await fetchDogImage(params.breed)
+    const page = parseInt(query.page) || 1
+    const current = parseInt(query.page) || 1
+    const start = 20 * (page - 1)
+    const end = start + 20
 
-    await store.dispatch('register/setImages', dogimage)
+    await store.dispatch('register/setImages', dogimage.slice(start, end))
+    await store.dispatch(
+      'register/setPageCount',
+      Math.ceil(dogimage.length / 20)
+    )
 
-    return { dogimage }
+    return {
+      dogimage,
+      page,
+      current,
+    }
   },
   computed: {
     ...mapGetters('register', ['dogImageList']),
+    ...mapGetters('register', ['pageCount']),
   },
 }
 </script>
