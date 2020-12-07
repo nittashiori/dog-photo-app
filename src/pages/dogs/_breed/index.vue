@@ -2,12 +2,16 @@
   <div class="container">
     <h2 class="title is-2">{{ dogTitle }}</h2>
     <div class="columns is-multiline">
-      <div v-for="(item, i) in dogImageList" :key="i" class="column is-3">
-        <img :src="item.url" />
-        <span v-if="current === 1 && i < 3" class="tag is-danger">NEW</span>
-        <a class="button is-warning is-small" @click="item.like += 1">
-          <span>いいね!{{ item.like }}件</span>
-        </a>
+      <div v-for="(item, i) in dogImageList" :key="i" class="column is-3 thumb">
+        <div class="thumb__header thumb-item">
+          <img class="thumb-item__image" :src="item.url" />
+        </div>
+        <div class="thumb__footer">
+          <span v-if="current === 1 && i < 3" class="tag is-danger">NEW</span>
+          <a class="button is-warning is-small" @click="item.like += 1">
+            <span>いいね!{{ item.like }}件</span>
+          </a>
+        </div>
       </div>
     </div>
     <nav class="pagination" role="navigation" aria-label="pagination">
@@ -62,3 +66,29 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.thumb__footer {
+  margin: 10px 0 0;
+}
+.thumb-item {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  &::before {
+    display: block;
+    content: '';
+    padding-top: 75%;
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+</style>
